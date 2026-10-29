@@ -1,0 +1,40 @@
+const etudiants = [
+    { id: 1, nom: 'Amine', note: 16 },
+    { id: 2, nom: 'Youssef', note: 8 },
+    { id: 3, nom: 'Salma', note: 14 },
+    { id: 4, nom: 'Omar', note: 12 }
+];
+
+console.log(etudiants);
+console.log(etudiants[0].nom);
+console.log(etudiants.length);
+function noteValide(note) {
+    return Number.isFinite(note) && note >= 0 && note <= 20;
+}
+
+console.log(noteValide(16));
+console.log(noteValide(25));
+
+function moyenne(notes) {
+    if (notes.length === 0) {
+        return null;
+    }
+
+    const somme = notes.reduce((total, note) => total + note, 0);
+
+    return somme / notes.length;
+}
+
+const notes = etudiants.map(e => e.note);
+
+console.log(moyenne(notes));
+const admis = etudiants.filter(e => e.note >= 10);
+
+console.log(admis);
+console.log("Nombre d'admis :", admis.length);
+const lignesEtudiants = etudiants.map(e => {
+    const resultat = e.note >= 10 ? 'Admis' : 'Ajourné';
+    return `${e.nom} - ${e.note}/20 - ${resultat}`;
+});
+
+console.log(lignesEtudiants);
